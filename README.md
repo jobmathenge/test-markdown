@@ -31,12 +31,12 @@ The security model is built on JWTs and NestJS Guards (`JwtAuthGuard` and `Roles
 
 ### 2.1. Test User Accounts and Roles
 
-The authentication service uses a development bypass, comparing credentials against mock user data where the password is the plaintext string `"testpass"`.
+The authentication service is comparing credentials against mock user data where the test password `"testpass"`.
 
-| Account | Role | Required JWT Claim |
-| :--- | :--- | :--- |
-| `admin@test.com` | **Admin** | `role: 'Admin'` |
-| `user@test.com` | **User** | `role: 'User'` |
+| Account | Role | Required JWT Claim | password
+| :--- | :--- | :--- | :--- |
+| `admin@test.com` | **Admin** | `role: 'Admin'` |`testpass` |
+| `user@test.com` | **User** | `role: 'User'` | `testpass` |
 
 ### 2.2. Authentication Flow
 
