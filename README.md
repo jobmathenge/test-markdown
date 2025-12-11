@@ -10,6 +10,22 @@
 
 ---
 
+## Alarm System Testing Matrix (Table Summary)
+
+This table consolidates the MQTT connection parameters and the specific test payloads required to trigger or clear each defined alert, ensuring complete coverage in one concise format.
+
+| Section | Metric (Topic) | Full Topic Name | Broker/Test Detail | Trigger Payload | Clear Payload | Expected Result |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Broker** | URL/Auth | N/A | **URL:** `mqtts://5e86...hivemq.cloud:8883` **User:** `hivemq.webclient...` **Pass:** `w8QcE2GF!S$5h3xf#%Hg` | N/A | N/A | Connection success required for all tests. |
+| **Test Case 1** | Temperature | `client1/temperature` | **Trigger Cond:** $> 40.0^\circ\text{C}$ **Clear Cond:** $\le 35.0^\circ\text{C}$ | `"42.5"` | `"34.9"` | Alert: **Active** $\rightarrow$ Alert: **Cleared** |
+| **Test Case 2** | Flowrate | `client1/flowrate` | **Trigger Cond:** $> 12.0 \text{ L/s}$ **Clear Cond:** $\le 10.0 \text{ L/s}$ | `"15.0"` | `"9.9"` | Alert: **Active** $\rightarrow$ Alert: **Cleared** |
+| **Test Case 3** | Power | `client1/power` | **Trigger Cond:** $= 0.0 \text{ kW}$ **Clear Cond:** $> 0.0 \text{ kW}$ | `"0.0"` | `"0.1"` | Alert: **Active** (Outage) $\rightarrow$ Alert: **Cleared** |
+| **Test Case 4** | Humidity | `client1/humidity` | **Trigger Cond:** $\ge 80.0\%$ **Clear Cond:** $< 70.0\%$ | `"85.0"` | `"69.9"` | Alert: **Active** $\rightarrow$ Alert: **Cleared** |
+| **Test Case 5** | Current | `client1/current` | **Trigger Cond:** $\ge 10.0 \text{ A}$ **Clear Cond:** $< 9.0 \text{ A}$ | `"12.0"` | `"8.9"` | Alert: **Active** $\rightarrow$ Alert: **Cleared** |
+| **Other Topics** | N/A | `client1/cumulative` | No Alert Logic Defined | N/A | N/A | Sensor Reading Saved (No Alert) |
+| **Other Topics** | N/A | `client1/pumpStatus` `client1/solarPower` `client1/batteryVoltage` | Subscribed by MqttService, but **no alert logic** in `AlertsService` (based on defined rules). | N/A | N/A | Sensor Reading Saved (No Alert) |
+
+
 ## 1. High-Level System Architecture
 
 The application is structured around a centralized NestJS API, which is responsible for data ingestion, real-time communication, security, and serving both the application logic and historical data.
@@ -100,3 +116,7 @@ This details the data retrieval pattern for the dashboard UI elements.
 | **Active Alert Count** | REST | `GET /alerts/count` | Used by `AlertBell.tsx` to display the red badge and trigger the ring animation. |
 | **Acknowledge Alert** | REST | `PATCH /alerts/acknowledge/:id` | Changes the alert's status from 'Active' to 'Acknowledged' in the database. |
 | **Export PDF** | REST | `GET /report/pdf` | Triggers a complex service call to fetch sensor data and alert summaries, generate a PDF using `pdfmake`, and stream the binary file. |
+
+
+
+
