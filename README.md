@@ -22,8 +22,7 @@ This table consolidates the MQTT connection parameters and the specific test pay
 | **Test Case 3** | Power | `client1/power` | **Trigger Cond:** $= 0.0 \text{ kW}$ **Clear Cond:** $> 0.0 \text{ kW}$ | `"0.0"` | `"0.1"` | Alert: **Active** (Outage) $\rightarrow$ Alert: **Cleared** |
 | **Test Case 4** | Humidity | `client1/humidity` | **Trigger Cond:** $\ge 80.0\%$ **Clear Cond:** $< 70.0\%$ | `"85.0"` | `"69.9"` | Alert: **Active** $\rightarrow$ Alert: **Cleared** |
 | **Test Case 5** | Current | `client1/current` | **Trigger Cond:** $\ge 10.0 \text{ A}$ **Clear Cond:** $< 9.0 \text{ A}$ | `"12.0"` | `"8.9"` | Alert: **Active** $\rightarrow$ Alert: **Cleared** |
-| **Other Topics** | N/A | `client1/cumulative` | No Alert Logic Defined | N/A | N/A | Sensor Reading Saved (No Alert) |
-| **Other Topics** | N/A | `client1/pumpStatus` `client1/solarPower` `client1/batteryVoltage` | Subscribed by MqttService, but **no alert logic** in `AlertsService` (based on defined rules). | N/A | N/A | Sensor Reading Saved (No Alert) |
+
 
 
 ## 1. High-Level System Architecture
