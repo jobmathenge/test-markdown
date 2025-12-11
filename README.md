@@ -10,6 +10,9 @@
 
 ---
 
+
+![Dayliff IOT Telemetry Platform Architecture](https://raw.githubusercontent.com/jobmathenge/test-markdown/main/Dayliff%20IOT%20Telemetry%20plaform.png)
+
 ## Alarm System Testing Matrix (Table Summary)
 
 This table consolidates the MQTT connection parameters and the specific test payloads required to trigger or clear each defined alert, ensuring complete coverage in one concise format.
